@@ -28,7 +28,7 @@
 
   // Skeleton first: data placeholders shimmer while the cards fade up,
   // then the real values swap in and the count-up, bars and line start.
-  const SKELETON_MS = reduceMotion ? 0 : 1100;
+  const SKELETON_MS = reduceMotion ? 0 : 2000;
   document.querySelectorAll(
     '.stat-value, .last-updated span, .best-day-title, .best-day-body, .hbar-value, .graph-top p, .graph-axis p, .upsell-text'
   ).forEach((el) => el.classList.add('sk'));
