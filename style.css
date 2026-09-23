@@ -209,6 +209,40 @@ h3 { font-size: 14px; font-weight: 600; line-height: 22px; white-space: nowrap; 
 
 .last-updated { display: flex; align-items: center; gap: 4px; font-size: 10px; line-height: 18px; color: var(--grey-800); white-space: nowrap; }
 
+/* ---------- Upsell ---------- */
+.upsell {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  background: var(--white);
+  filter:
+    drop-shadow(-8px 0 2.5px rgba(143, 148, 127, 0.02))
+    drop-shadow(8px 0 2.5px rgba(143, 148, 127, 0.02))
+    drop-shadow(0 0 1px rgba(143, 148, 127, 0.02));
+}
+.upsell-text { font-size: 14px; font-weight: 500; line-height: 24px; letter-spacing: -0.028px; white-space: nowrap; }
+.upsell-btn {
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 0 12px;
+  border-radius: 8px;
+  background: var(--green);
+  color: var(--white);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 32px;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, transform 0.15s var(--ease);
+}
+.upsell-btn:hover { background: #007a38; }
+.upsell-btn:active { transform: scale(0.97); }
+
 /* ---------- Performance ---------- */
 .period { display: flex; flex-direction: column; gap: 12px; }
 .period-head { display: flex; align-items: center; justify-content: space-between; padding-left: 24px; gap: 12px; }
@@ -404,13 +438,53 @@ h3 { font-size: 14px; font-weight: 600; line-height: 22px; white-space: nowrap; 
 }
 .is-loaded .card.reveal:hover { transition-delay: 0s; }
 .hbar-fill { transform: scaleX(0); }
-.is-loaded .hbar-fill { transform: none; transition: transform 0.9s var(--ease), background-color 0.2s ease; transition-delay: calc(400ms + var(--j, 0) * 90ms), 0s; }
+.is-ready .hbar-fill { transform: none; transition: transform 0.9s var(--ease), background-color 0.2s ease; transition-delay: calc(400ms + var(--j, 0) * 90ms), 0s; }
+
+/* Skeleton */
+:root { --sk: linear-gradient(90deg, #eceeec 25%, #f6f7f6 37%, #eceeec 63%); }
+.is-skeleton .sk {
+  color: transparent !important;
+  background: var(--sk) !important;
+  background-size: 400% 100% !important;
+  border-radius: 6px;
+  clip-path: inset(18% 0 round 6px);
+  animation: shimmer 1.3s ease-in-out infinite;
+}
+.is-skeleton .sk.sk-box { clip-path: none; border-radius: 8px; }
+.is-skeleton .sk * { visibility: hidden; }
+.is-skeleton .live-dot { opacity: 0; }
+.hbar-track { position: relative; }
+.is-skeleton .hbar-track::before,
+.is-skeleton .graph-plot::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 8px;
+  background: var(--sk);
+  background-size: 400% 100%;
+  animation: shimmer 1.3s ease-in-out infinite;
+}
+.is-skeleton .hbar-track::before { width: var(--w); max-width: 100%; height: 34px; }
+.is-skeleton .graph-plot::before { right: 0; bottom: 0; opacity: 0.6; }
+.is-ready .sk { animation: sk-in 0.4s ease both; }
+.live-dot { transition: opacity 0.4s ease; }
+
+@keyframes shimmer {
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0 50%; }
+}
+@keyframes sk-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .reveal, .hbar-fill { opacity: 1; transform: none; }
-  .is-loaded .reveal, .is-loaded .hbar-fill { transition: none; }
+  .is-loaded .reveal, .is-ready .hbar-fill { transition: none; }
   .live-dot b, .graph-point b { animation: none; }
   .graph-svg .is-drawing { clip-path: none; }
+  .is-ready .sk { animation: none; }
 }
 
 /* ---------- Design concept note ---------- */
@@ -445,6 +519,8 @@ h3 { font-size: 14px; font-weight: 600; line-height: 22px; white-space: nowrap; 
   .period-head { flex-direction: column; align-items: flex-start; }
   .date-filter { flex-wrap: wrap; }
   .best-day { height: auto; }
+  .upsell { height: auto; }
+  .upsell-text { white-space: normal; }
   .title-header { flex-wrap: wrap; row-gap: 8px; }
   .hbar { gap: 12px; }
   .hbar-value { width: auto; }

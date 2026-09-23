@@ -26,8 +26,19 @@
     requestAnimationFrame(tick);
   }
 
-  requestAnimationFrame(() => {
-    document.body.classList.add('is-loaded');
+  // Skeleton first: data placeholders shimmer while the cards fade up,
+  // then the real values swap in and the count-up, bars and line start.
+  const SKELETON_MS = reduceMotion ? 0 : 1100;
+  document.querySelectorAll(
+    '.stat-value, .last-updated span, .best-day-title, .best-day-body, .hbar-value, .graph-top p, .graph-axis p, .upsell-text'
+  ).forEach((el) => el.classList.add('sk'));
+  document.querySelectorAll('.chip, .best-day-icon, .upsell-btn').forEach((el) => el.classList.add('sk', 'sk-box'));
+
+  requestAnimationFrame(() => document.body.classList.add('is-loaded'));
+
+  const ready = new Promise((resolve) => setTimeout(resolve, SKELETON_MS)).then(() => {
+    document.body.classList.remove('is-skeleton');
+    document.body.classList.add('is-ready');
     document.querySelectorAll('[data-count]').forEach(countUp);
   });
 
@@ -114,10 +125,10 @@
       svg.querySelectorAll('path').forEach((p) => p.setAttribute('vector-effect', 'non-scaling-stroke'));
       if (!reduceMotion) {
         svg.classList.add('is-drawing');
-        requestAnimationFrame(() => requestAnimationFrame(() => {
+        ready.then(() => requestAnimationFrame(() => requestAnimationFrame(() => {
           svg.classList.remove('is-drawing');
           svg.classList.add('is-drawn');
-        }));
+        })));
       }
       initChart(svg);
     })
