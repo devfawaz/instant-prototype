@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Instant Dashboard</title>
+  <meta name="description" content="Instant revenue dashboard prototype: animated stats, hoverable revenue chart and flow breakdown.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <!-- Navigation rail -->
+    <nav class="rail" aria-label="Main">
+      <div class="rail-top">
+        <div class="rail-logo"><img src="assets/logo.png" alt="Instant" width="113" height="24"></div>
+
+        <div class="rail-group rail-store">
+          <a class="nav-item nav-item--lg" href="#"><img src="assets/nav-store.svg" alt="" width="20" height="20"><span>NovaMart</span></a>
+        </div>
+
+        <div class="rail-group rail-plain">
+          <a class="nav-item is-selected" href="#" aria-current="page"><img src="assets/nav-dashboard.svg" alt="" width="20" height="20"><span>Dashboard</span></a>
+        </div>
+
+        <div class="rail-group">
+          <p class="rail-label">Emails</p>
+          <div class="rail-list">
+            <a class="nav-item" href="#"><img src="assets/nav-templates.svg" alt="" width="20" height="20"><span>Templates AI</span></a>
+            <a class="nav-item" href="#"><img src="assets/nav-analytics.svg" alt="" width="20" height="20"><span>Analytics</span></a>
+          </div>
+        </div>
+
+        <div class="rail-group rail-boxed">
+          <p class="rail-label">Ads</p>
+          <a class="nav-item" href="#"><img src="assets/nav-setup.svg" alt="" width="20" height="20"><span>Setup</span></a>
+        </div>
+
+        <div class="rail-group rail-bottom-border">
+          <p class="rail-label">Internal</p>
+          <a class="nav-item" href="#"><img src="assets/nav-gear.svg" alt="" width="20" height="20"><span>Internal Tools</span></a>
+          <a class="nav-item" href="#"><img src="assets/nav-user.svg" alt="" width="20" height="20"><span>Shoppers</span></a>
+          <a class="nav-item" href="#"><img src="assets/nav-gear.svg" alt="" width="20" height="20"><span>Integrations</span></a>
+        </div>
+      </div>
+
+      <div class="rail-foot">
+        <div class="rail-group rail-contact">
+          <a class="nav-item" href="#"><img src="assets/nav-contact.svg" alt="" width="20" height="20"><span>Contact Us</span></a>
+        </div>
+        <div class="rail-group rail-account">
+          <a class="nav-item" href="#"><img src="assets/nav-billing.svg" alt="" width="20" height="20"><span>Manage Billing</span></a>
+          <a class="nav-item" href="#"><img src="assets/nav-user.svg" alt="" width="20" height="20"><span>Users</span></a>
+          <a class="nav-item" href="#"><img src="assets/nav-gear.svg" alt="" width="20" height="20"><span>Configuration</span></a>
+          <a class="nav-item" href="#"><img src="assets/nav-signout.svg" alt="" width="20" height="20"><span>Sign out</span></a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Body -->
+    <main class="body-container">
+      <div class="body-wrapper">
+        <div class="max">
+          <section class="overview">
+            <header class="welcome reveal">
+              <h1>Welcome back, NovaMart!</h1>
+              <p>Here’s the revenue <strong>Instant</strong> helped you supercharge.</p>
+            </header>
+
+            <div class="card since reveal">
+              <h2 class="card-title-lg">Since using Instant</h2>
+              <div class="stat-row">
+                <div class="stat">
+                  <div class="stat-label">
+                    <span>You earned</span>
+                    <button class="info" type="button" data-tip="This is your total revenue generated through Instant since you started. It’s calculated based on tracked conversions and attributed data." aria-label="About You earned"><img src="assets/info.svg" alt="" width="15" height="15"></button>
+                  </div>
+                  <p class="stat-value" data-count="1449029.44" data-prefix="$" data-decimals="2">$1,449,029.44</p>
+                  <span class="chip"><img src="assets/trending-up.svg" alt="" width="20" height="20"><span data-count="77" data-suffix="%" data-decimals="2">77.00%</span></span>
+                </div>
+                <div class="vdivider" aria-hidden="true"><img src="assets/divider.svg" alt="" width="101" height="1"></div>
+                <div class="stat">
+                  <div class="stat-label">
+                    <span>Return on Investment</span>
+                    <button class="info" type="button" data-tip="This shows how much money you made for every $1 you spent on Instant." aria-label="About Return on Investment"><img src="assets/info.svg" alt="" width="15" height="15"></button>
+                  </div>
+                  <p class="stat-value" data-count="114.7" data-suffix="x" data-decimals="1">114.7x</p>
+                </div>
+                <div class="vdivider" aria-hidden="true"><img src="assets/divider.svg" alt="" width="101" height="1"></div>
+                <div class="stat stat--live">
+                  <div class="stat-label">
+                    <span>Today you made</span>
+                    <span class="live-dot" aria-hidden="true"><i></i><b></b></span>
+                  </div>
+                  <p class="stat-value stat-value--live" id="live-value">$1,248.57</p>
+                  <div class="last-updated">
+                    <span id="last-updated">Last updated 5 min ago</span>
+                    <button class="info" type="button" data-tip="This shows the last time your revenue data was refreshed. We update it often using real-time data from all the tools you use." aria-label="About last updated"><img src="assets/info.svg" alt="" width="15" height="15"></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="period">
+            <div class="period-head reveal">
+              <h2 class="card-title-lg">Performance this month</h2>
+              <div class="date-filter">
+                <button class="control control--dropdown" type="button">
+                  <span>Last 30 Days</span>
+                  <img src="assets/arrow-down.svg" alt="" width="24" height="24">
+                </button>
+                <button class="control control--range" type="button">
+                  <img src="assets/calendar.svg" alt="" width="20" height="20">
+                  <span>Mar 16 - Apr 15</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="data-container">
+              <div class="row1">
+                <div class="col1">
+                  <div class="card revenue-period reveal">
+                    <div class="stat">
+                      <div class="stat-label">
+                        <span>Revenue earned</span>
+                        <button class="info" type="button" data-tip="The total sales made through Instant in this selected date range. This includes sales from emails, cart recovery, and other automations that helped convert shoppers into customers." aria-label="About Revenue earned"><img src="assets/info.svg" alt="" width="15" height="15"></button>
+                      </div>
+                      <p class="stat-value" data-count="282454.28" data-prefix="$" data-decimals="2">$282,454.28</p>
+                    </div>
+                    <div class="vdivider" aria-hidden="true"><img src="assets/divider-sm.svg" alt="" width="65" height="1"></div>
+                    <div class="stat">
+                      <div class="stat-label">
+                        <span>Return on Investment</span>
+                        <button class="info" type="button" data-tip="How much return you got this month for using Instant. We calculate this by comparing your revenue from Instant-powered features to what you paid for using Instant." aria-label="About Return on Investment this month"><img src="assets/info.svg" alt="" width="15" height="15"></button>
+                      </div>
+                      <p class="stat-value" data-count="49" data-suffix="x" data-decimals="0">49x</p>
+                    </div>
+                  </div>
+
+                  <div class="card best-day reveal">
+                    <div class="best-day-icon"><img src="assets/trophy.svg" alt="" width="30" height="30"></div>
+                    <div class="best-day-text">
+                      <p class="best-day-title">Top Earning Day</p>
+                      <p class="best-day-body">You crushed it on <strong>6 Apr 2025</strong> with <strong>$28,354.38</strong></p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card most-revenue reveal">
+                  <div class="title-header">
+                    <div class="stat-label">
+                      <h3>Most Revenue From</h3>
+                      <button class="info" type="button" data-tip="This shows which Instant flow brought in the most revenue during the selected period." aria-label="About Most Revenue From"><img src="assets/info.svg" alt="" width="15" height="15"></button>
+                    </div>
+                    <a class="cta" href="#">See full breakdown <img src="assets/arrow-forward.svg" alt="" width="20" height="20"></a>
+                  </div>
+                  <div class="hbars">
+                    <div class="hbar" data-share="0.46" style="--w:100%">
+                      <div class="hbar-track"><div class="hbar-fill"><span>Add to Cart Abandonment</span></div></div>
+                      <p class="hbar-value">$95,989.82</p>
+                    </div>
+                    <div class="hbar" data-share="0.32" style="--w:46%">
+                      <div class="hbar-track"><div class="hbar-fill"><span>Checkout Abandonment</span></div></div>
+                      <p class="hbar-value">$66,024.27</p>
+                    </div>
+                    <div class="hbar" data-share="0.28" style="--w:40%">
+                      <div class="hbar-track"><div class="hbar-fill"><span>Email</span></div></div>
+                      <p class="hbar-value">$57,798.81</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card revenue-time reveal">
+                <div class="title-header">
+                  <h3>Revenue over time</h3>
+                  <a class="cta" href="#">See full analytics <img src="assets/arrow-forward.svg" alt="" width="20" height="20"></a>
+                </div>
+                <div class="graph">
+                  <div class="graph-top">
+                    <img class="gridline" src="assets/graph-line-top.svg" alt="" width="1136" height="1">
+                    <p>$30k</p>
+                  </div>
+                  <div class="graph-plot" id="graph-plot" role="img" aria-label="Revenue per day, Mar 16 to Apr 15, peaking at $28,354.38 on 6 Apr">
+                    <div class="graph-svg" id="graph-svg"></div>
+                    <div class="graph-guide" id="graph-guide"></div>
+                    <div class="graph-point" id="graph-point"><i></i><b></b></div>
+                  </div>
+                  <div class="graph-bottom">
+                    <div class="graph-axis"><p>Mar 15</p><p>Apr 15</p></div>
+                    <img class="gridline" src="assets/graph-line-bottom.svg" alt="" width="1136" height="1">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Floating tooltips -->
+  <div class="tip" id="tip" role="tooltip"></div>
+  <div class="earned" id="earned" aria-hidden="true">
+    <p class="earned-date" id="earned-date"></p>
+    <div class="earned-row"><p>Total Revenue</p><p class="earned-strong" id="earned-total"></p></div>
+    <div class="earned-row"><p>Biggest Contributor</p><p class="earned-strong earned-right" id="earned-flow"></p></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
