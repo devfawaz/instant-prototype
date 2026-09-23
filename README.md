@@ -2,7 +2,7 @@
 
 **Live prototype:** https://devfawaz.github.io/instant-prototype/
 
-> **Disclaimer:** This is an independent, unofficial design concept. It is not affiliated with, endorsed by or representative of Instant or any other company. NovaMart is a fictional store, and all figures are illustrative. Brand name, logo and copy are used for non-commercial portfolio purposes only.
+> **Disclaimer:** This is an independent, unofficial design exercise based on a take-home interview challenge from Instant, a real e-commerce software company. It is not affiliated with, endorsed by or representative of Instant. The Instant name is used for illustrative, non-commercial portfolio purposes only; the wordmark is plain set type rather than Instant's logo, NovaMart is a fictional store, and all figures are illustrative.
 
 A single-page, interactive build of the Instant revenue dashboard from Figma. Plain HTML, CSS and JavaScript, with no build step.
 

@@ -54,7 +54,7 @@ img { display: block; }
   overflow-y: auto;
 }
 .rail-logo { padding: 24px 16px; }
-.rail-logo img { width: 113px; height: 24px; object-fit: cover; }
+.wordmark { display: block; height: 24px; font-size: 24px; font-weight: 700; line-height: 24px; letter-spacing: -0.8px; color: var(--grey-1000); }
 
 .rail-group { display: flex; flex-direction: column; gap: 6px; padding: 8px 6px; }
 .rail-store { padding: 6px; border-top: 1px solid rgba(220, 220, 220, 0.5); border-bottom: 1px solid rgba(220, 220, 220, 0.5); }
